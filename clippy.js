@@ -1,4 +1,5 @@
 var clippy = {};
+var curagent = null;
 
 /******
  *
@@ -10,7 +11,7 @@ clippy.Agent = function (path, data, sounds) {
 
     this._queue = new clippy.Queue($.proxy(this._onQueueEmpty, this));
 
-    this._el = $('<div class="clippy"></div>').hide();
+    this._el = $('<div class="clippy" id="clippy-2b3aef30-125c-11e2-892e-0800200c9a66"></div>').hide();
 
     $(document.body).append(this._el);
 
@@ -664,8 +665,8 @@ clippy.Balloon = function (targetEl) {
 
 clippy.Balloon.prototype = {
 
-    WORD_SPEAK_TIME:320,
-    CLOSE_BALLOON_DELAY:5000,
+    WORD_SPEAK_TIME:100,
+    CLOSE_BALLOON_DELAY:2000,
 
     _setup:function () {
 
@@ -799,10 +800,24 @@ clippy.Balloon.prototype = {
         var time = this.WORD_SPEAK_TIME;
         var el = this._content;
         var idx = 1;
-        el.text(words.join(' '));
-        this._active = false;
-        complete();
-        this.hide();
+
+
+        this._addWord = $.proxy(function () {
+            if (!this._active) return;
+            if (idx > words.length) {
+                this._active = false;
+                if (!this._hold) {
+                    complete();
+                    this.hide();
+                }
+            } else {
+                el.text(words.slice(0, idx).join(' '));
+                idx++;
+                this._loop = window.setTimeout($.proxy(this._addWord, this), time);
+            }
+        }, this);
+
+        this._addWord();
 
     },
 
@@ -832,6 +847,14 @@ clippy.Balloon.prototype = {
 
 clippy.BASE_PATH = 'http://clippy.js.s3.amazonaws.com/Agents/';
 
+clippy.hide = function(){
+    if(curagent != null ){curagent.hide();}
+};
+
+clippy.show = function(){
+    if(curagent != null ){curagent.show();}
+};
+
 clippy.load = function (name, successCb, failCb) {
     var path = clippy.BASE_PATH + name;
 
@@ -853,6 +876,7 @@ clippy.load = function (name, successCb, failCb) {
     // wrapper to the success callback
     var cb = function () {
         var a = new clippy.Agent(path, data,sounds);
+        curagent = a;
         successCb(a);
     };
 
