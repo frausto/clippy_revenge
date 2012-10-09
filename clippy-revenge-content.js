@@ -12,20 +12,27 @@ clippy.load('Clippy', function(agent){
       agent.play('Writing');
     });
 
-    $('button').click(function(event) {
-      agent.stop();
-      agent.play('GetAttention');
-      agent.speak("Looks like you are trying to click on a button! Are you sure you want to click on this thing?");
-      event.preventDefault();
-      $.trigger(event); 
-    });
+    $('a').live('click', function(cevent) {
+      classes = $(this).attr('class');
+      if(/clippy/.test(classes)){return;}
 
-    $('a').click(function(event) {
+      red = $(this).attr('href');
       agent.stop();
       agent.play('GetAttention');
-      agent.speak("Looks like you are trying to click on a link! Are you sure you want to click on this thing?<br /><div class=\"clippyyes\">YES</div>", true);
-      $('.clippyyes')
-      event.preventDefault();
-      $.trigger(event); 
+      var callsb = function(){
+        $('.clippyyes').click(function(ev){
+          ev.preventDefault();
+          window.location.href = red;
+        });
+
+        $('.clippyno').click(function(ev){
+          ev.preventDefault();
+          agent.stop();
+          agent.speak("I thought not.");  
+        });
+      }
+
+      agent.speak("Looks like you are trying to click on a link! Are you sure you want to click on this thing?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsb);
+      cevent.preventDefault();
     });
 });

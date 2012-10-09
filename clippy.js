@@ -176,9 +176,9 @@ clippy.Agent.prototype = {
      *
      * @param {String} text
      */
-    speak:function (text, hold) {
+    speak:function (text, hold, callback) {
         this._addToQueue(function (complete) {
-            this._balloon.speak(complete, text, hold);
+            this._balloon.speak(complete, text, hold, callback);
         }, this);
     },
 
@@ -753,7 +753,7 @@ clippy.Balloon.prototype = {
         return false;
     },
 
-    speak:function (complete, text, hold) {
+    speak:function (complete, text, hold, callback) {
         this._hidden = false;
         this.show();
         var c = this._content;
@@ -761,7 +761,7 @@ clippy.Balloon.prototype = {
         c.height('auto');
         c.width('auto');
         // add the text
-        c.text(text);
+        c.html(text);
         // set height
         c.height(c.height());
         c.width(c.width());
@@ -769,7 +769,7 @@ clippy.Balloon.prototype = {
         this.reposition();
 
         this._complete = complete;
-        this._sayWords(text, hold, complete);
+        this._sayWords(text, hold, complete, callback);
     },
 
     show:function () {
@@ -793,7 +793,7 @@ clippy.Balloon.prototype = {
         this._hiding = null;
     },
 
-    _sayWords:function (text, hold, complete) {
+    _sayWords:function (text, hold, complete, callback) {
         this._active = true;
         this._hold = hold;
         var words = text.split(/[^\S-]/);
@@ -806,12 +806,13 @@ clippy.Balloon.prototype = {
             if (!this._active) return;
             if (idx > words.length) {
                 this._active = false;
+                if(callback !== undefined){callback();}
                 if (!this._hold) {
                     complete();
                     this.hide();
                 }
             } else {
-                el.text(words.slice(0, idx).join(' '));
+                el.html(words.slice(0, idx).join(' '));
                 idx++;
                 this._loop = window.setTimeout($.proxy(this._addWord, this), time);
             }
