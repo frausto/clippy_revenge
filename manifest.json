@@ -3,11 +3,11 @@
   "version": "1.0",
   "manifest_version": 2,
   "description": "Finally, Clippy comes to Chrome! Get help browsing the web.",
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
-  },
   "permissions": [
-    "http://api.flickr.com/"
-  ]
+    "tabs", "http://*/*"
+  ],
+  "background": { "scripts": ["clippy-revenge.js"] },
+  "browser_action": {
+    "name": "Click enable/disable Clippy"
+  }
 }
