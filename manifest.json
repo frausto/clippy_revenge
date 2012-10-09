@@ -17,7 +17,7 @@
     {
       "matches": ["http://*/*", "https://*/*"],
       "css": ["clippy.css"],
-      "js": ["jquery-1.8.2.min.js", "clippy.min.js", "sounds-mp3.js", "agent.js", "clippy-revenge-content.js"]
+      "js": ["jquery-1.8.2.min.js", "clippy.js", "sounds-mp3.js", "agent.js", "clippy-revenge-content.js"]
     }
   ]
 }
