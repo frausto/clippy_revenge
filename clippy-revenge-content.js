@@ -29,19 +29,6 @@ clippy.load('Clippy', function(agent){
     agent.play('Writing');
   });
 
-  $('a').live('click', function(cevent) {
-    classes = $(this).attr('class');
-    if(/clippy/.test(classes)){return;}
-
-
-    var yescall = function(){window.location.href = $(this).attr('href');}
-    agent.stop();
-    agent.play('GetAttention');
-    agent.speak("Looks like you are trying to click on a link! Are you sure you want to click on this thing?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf);
-    cevent.preventDefault();
-  });
-
-
   
   var urlchangy = function(){
     var yescall = function(){window.location.href = 'https://github.com/frausto';}
@@ -49,6 +36,7 @@ clippy.load('Clippy', function(agent){
   };
 
   var insulty = function(){
+    agent.play('GetAttention');
     agent.speak("You are bad at web browsing, and you should feel bad.");
   };
 
