@@ -14,6 +14,12 @@ Neither have I. But here it is anyway.
 Finally, Clippy for chrome!
 
 
+Contribute
+-------------------------------
+
+* Feel free to send me an email if you want clippy to do something he does not yet.
+* Also you can always fork, add your own features, and submit a pull request.
+
 Special Thanks
 ================================
 To the fine people at Smore (http://www.smore.com/) who made clippy.js, which I went and hacked for my own purposes.
