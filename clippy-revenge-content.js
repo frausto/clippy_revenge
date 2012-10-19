@@ -131,7 +131,6 @@ clippy.load('Clippy', function(agent){
     cat2,
     cat3,
     cat4,
-    cat5,
     cat6,
     cat7,
     animate, 

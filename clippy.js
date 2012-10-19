@@ -495,7 +495,7 @@ clippy.Animator.prototype = {
         var frameSize = this._data.framesize;
         el.css('display', "none");
         el.css({width:frameSize[0], height:frameSize[1]});
-        el.css('background', "url('" + this._path + "/map.png') no-repeat");
+        el.css('background', "url('" + chrome.extension.getURL('/map.png') + "') no-repeat");
 
         return el;
     },
@@ -846,7 +846,7 @@ clippy.Balloon.prototype = {
 
 };
 
-clippy.BASE_PATH = 'http://clippy.js.s3.amazonaws.com/Agents/';
+clippy.BASE_PATH = '';
 
 clippy.hide = function(){
     if(curagent != null ){curagent.hide();}
@@ -892,7 +892,7 @@ clippy.load._loadMap = function (path) {
     // set dfd if not defined
     dfd = clippy.load._maps[path] = $.Deferred();
 
-    var src = path + '/map.png';
+    var src = chrome.extension.getURL('/map.png');
     var img = new Image();
 
     img.onload = dfd.resolve;
