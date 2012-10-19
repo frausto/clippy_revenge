@@ -7,6 +7,8 @@ clippy.load('Clippy', function(agent){
       $('.clippyyes').click(function(ev){
         ev.preventDefault();
         yescall();
+        agent.stopCurrent();
+        agent.stop();
       });
 
       $('.clippyno').click(function(ev){
@@ -138,5 +140,8 @@ clippy.load('Clippy', function(agent){
     scrolly, 
     animate
   ]
-  window.setInterval(arr[Math.floor(Math.random()*arr.length)](), 45);
+  window.setInterval(function(){
+    var fun = arr[Math.floor(Math.random()*arr.length)];
+    fun();
+  }, 45000);
 });
