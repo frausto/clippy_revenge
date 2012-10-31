@@ -32,6 +32,7 @@ clippy.Agent.prototype = {
      * @param {Number} y
      */
     gestureAt:function (x, y) {
+        if (this._hidden) return;
         var d = this._getDirection(x, y);
         var gAnim = 'Gesture' + d;
         var lookAnim = 'Look' + d;
@@ -117,6 +118,7 @@ clippy.Agent.prototype = {
     },
 
     play:function (animation, timeout, cb) {
+        if (this._hidden) return;
         if (!this.hasAnimation(animation)) return false;
 
         if (timeout === undefined) timeout = 5000;
@@ -177,6 +179,7 @@ clippy.Agent.prototype = {
      * @param {String} text
      */
     speak:function (text, hold, callback) {
+        if (this._hidden) return;
         this._addToQueue(function (complete) {
             this._balloon.speak(complete, text, hold, callback);
         }, this);
@@ -238,6 +241,7 @@ clippy.Agent.prototype = {
      * @return {jQuery.Deferred}
      */
     animate:function () {
+        if (this._hidden) return;
         var animations = this.animations();
         var anim = animations[Math.floor(Math.random() * animations.length)];
         // skip idle animations
