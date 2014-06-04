@@ -9,10 +9,6 @@
   "background": {
     "scripts": ["clippy-revenge.js"]
   },
-  "browser_action": {
-    "name": "Click enable/disable Clippy",
-    "default_icon": "icon-active.png"
-  },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],

@@ -9,6 +9,8 @@ clippy.load('Clippy', function(agent){
         yescall();
         agent.stopCurrent();
         agent.stop();
+        agent.speak("Done.");
+        agent.play('EmptyTrash');
       });
 
       $('.clippyno').click(function(ev){
@@ -31,7 +33,7 @@ clippy.load('Clippy', function(agent){
     agent.play('Writing');
   });
 
-  
+
   var urlchangy = function(){
     var yescall = function(){window.location.href = 'http://champd.com/';}
     agent.speak("I can't help but notice you are on some stupid web page. Want to let me just take you to a cool page?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf(yescall));
@@ -63,7 +65,7 @@ clippy.load('Clippy', function(agent){
 
   var cat1 = function(){
     agent.play('GetTechy');
-    agent.speak("Did you know, in ancient Egypt killing a cat was punishable by death? Mee-wow!");
+    agent.speak("Did you know, the term \"surfing the web\" came about when a popular surfer ran into a spider web while on his laptop?");
   };
 
   var cat2 = function(){
@@ -127,21 +129,23 @@ clippy.load('Clippy', function(agent){
   });
 
   var arr = [
-    urlchangy, 
-    insulty, 
+    urlchangy,
+    insulty,
     cat1,
     cat2,
     cat3,
     cat4,
     cat6,
     cat7,
-    animate, 
-    formfilly, 
-    scrolly, 
+    animate,
+    formfilly,
+    scrolly,
     animate
   ]
   window.setInterval(function(){
     var fun = arr[Math.floor(Math.random()*arr.length)];
-    fun();
-  }, 45000);
+    if(!clippy.isEmpty()){
+      fun();
+    }
+  }, 10000);
 });

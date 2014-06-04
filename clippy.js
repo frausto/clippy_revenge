@@ -860,6 +860,10 @@ clippy.show = function(){
     if(curagent != null ){curagent.show();}
 };
 
+clippy.isEmpty = function(){
+  curagent._queue.length <= 0
+};
+
 clippy.load = function (name, successCb, failCb) {
     var path = clippy.BASE_PATH + name;
 
@@ -1027,4 +1031,3 @@ clippy.Queue.prototype = {
         this._progressQueue();
     }
 };
-
