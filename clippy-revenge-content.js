@@ -10,7 +10,7 @@ clippy.load('Clippy', function(agent){
         agent.stopCurrent();
         agent.stop();
         agent.speak("Done.");
-        agent.play('EmptyTrash');
+        agent.play('GetWizardy');
       });
 
       $('.clippyno').click(function(ev){
