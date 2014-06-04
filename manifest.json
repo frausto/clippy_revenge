@@ -1,5 +1,6 @@
 {
   "name": "Clippy 2: Revenge of the Clip",
+  "short_name": "Clippy",
   "version": "1.0",
   "manifest_version": 2,
   "description": "Finally, Clippy comes to Chrome! Get help browsing the web.",
