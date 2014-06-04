@@ -69,7 +69,11 @@ clippy.load('Clippy', function(agent){
   };
 
   var cat2 = function(){
-    agent.speak("Web fact: the internet was first created by Gilbert von Interneterhausen. True story.");
+    if($('a').length == 0){return;}
+    var yescall = function(){
+      $('a')[Math.floor(Math.random()*$('a').length)].click()
+    }
+    agent.speak("I see some links... want me to pick one and click on it for you?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf(yescall));
   };
 
   var cat3 = function(){
@@ -82,6 +86,7 @@ clippy.load('Clippy', function(agent){
   };
 
   var cat6 = function(){
+    if($('a').length == 0){return;}
     var yescall = function(){
       $('a').css({ color: "red", background: "blue" });
     }
@@ -90,6 +95,23 @@ clippy.load('Clippy', function(agent){
 
   var cat7 = function(){
     agent.speak("Web fact: the internet was first created by Gilbert von Interneterhausen. True story.");
+  };
+
+  var cat8 = function(){
+    if($('img').length == 0){return;}
+    var yescall = function(){
+      $('img').attr('src','http://www.templeofcats.com/wp-content/uploads/2011/01/derp-cat.jpg')
+    }
+    agent.speak("This page needs more cats, should I put more cats on the page?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf(yescall));
+  };
+
+  var cat9 = function(){
+    var yescall = function(){
+      $('body').css({ color: "yellow", background: "black" })
+      $('div').css({ color: "yellow", background: "black" })
+      $('a').css({ color: "blue", background: "white" })
+    }
+    agent.speak("I have a better color scheme, want me to switch to it?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf(yescall));
   };
 
   var animate = function(){
@@ -131,12 +153,18 @@ clippy.load('Clippy', function(agent){
   var arr = [
     urlchangy,
     insulty,
+    urlchangy,
     cat1,
+    urlchangy,
     cat2,
     cat3,
     cat4,
+    cat9,
     cat6,
+    animate,
     cat7,
+    cat8,
+    cat8,
     animate,
     formfilly,
     scrolly,
@@ -144,8 +172,8 @@ clippy.load('Clippy', function(agent){
   ]
   window.setInterval(function(){
     var fun = arr[Math.floor(Math.random()*arr.length)];
-    if(!clippy.isEmpty()){
+    if(clippy.isEmpty()){
       fun();
     }
-  }, 10000);
+  }, 45000);
 });

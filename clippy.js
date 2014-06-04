@@ -861,7 +861,7 @@ clippy.show = function(){
 };
 
 clippy.isEmpty = function(){
-  curagent._queue.length <= 0
+  return curagent._queue._queue.length <= 0
 };
 
 clippy.load = function (name, successCb, failCb) {
