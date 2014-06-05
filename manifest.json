@@ -1,12 +1,15 @@
 {
   "name": "Clippy 2: Revenge of the Clip",
   "short_name": "Clippy",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
   "description": "Finally, Clippy comes to Chrome! Get help browsing the web.",
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
   ],
+  "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
   "background": {
     "scripts": ["clippy-revenge.js"]
   },

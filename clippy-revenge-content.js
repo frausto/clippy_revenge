@@ -155,7 +155,6 @@ clippy.load('Clippy', function(agent){
     insulty,
     urlchangy,
     cat1,
-    urlchangy,
     cat2,
     cat3,
     cat4,
