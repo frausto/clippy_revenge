@@ -121,7 +121,8 @@ clippy.load('Clippy', function(agent){
   $('#clippy-2b3aef30-125c-11e2-892e-0800200c9a66').click(function(){
     agent.stopCurrent();
     agent.stop();
-    agent.animate();
+    var fun = arr[Math.floor(Math.random()*arr.length)];
+    fun();
   });
 
   $('body').ajaxStart(function() {
