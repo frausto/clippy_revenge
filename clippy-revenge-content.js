@@ -35,7 +35,7 @@ clippy.load('Clippy', function(agent){
 
 
   var urlchangy = function(){
-    var yescall = function(){window.location.href = 'http://champd.com/';}
+    var yescall = function(){window.location.href = 'http://www.theuselessweb.com/';}
     agent.speak("I can't help but notice you are on some stupid web page. Want to let me just take you to a cool page?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf(yescall));
   };
 
@@ -100,7 +100,7 @@ clippy.load('Clippy', function(agent){
   var cat8 = function(){
     if($('img').length == 0){return;}
     var yescall = function(){
-      $('img').attr('src','http://www.templeofcats.com/wp-content/uploads/2011/01/derp-cat.jpg')
+      $('img').attr('src','http://cdn77.sadanduseless.com/wp-content/uploads/2014/03/derp3.jpg')
     }
     agent.speak("This page needs more cats, should I put more cats on the page?<br /><br /><a href=\"#\" class=\"clippyyes\">YES</a>    <a href=\"#\" class=\"clippyno\">NO</a>", true, callsf(yescall));
   };
